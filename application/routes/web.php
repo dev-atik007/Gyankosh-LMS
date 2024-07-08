@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,21 +16,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/test', function () {
-//     return view('templates.register');
-// });
 
-Route::get('/', [SiteController::class, 'templates']);
+Route::get('/', [SiteController::class, 'templates'])->name('templates');
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('user.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
+    Route::post('user/profile/update', [UserController::class, 'profileUpdate'])->name('user.profile.update');
 });
+
+
+// Route::middleware(['auth', 'roles:user'])->group(function () {
+
+//     Route::controller('User/UserController')->group(function () {
+//         Route::get('user/dashboard', 'dashboard')->name('user.dashboard');
+
+
+//     });
+
+// });
+
+
+
 
 require __DIR__.'/auth.php';

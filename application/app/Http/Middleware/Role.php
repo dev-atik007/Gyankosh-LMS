@@ -16,9 +16,8 @@ class Role
     public function handle(Request $request, Closure $next, $role): Response
     {
         if ($request->user()->role !== $role) {
-            return redirect()->route('user.dashboard');
+            return redirect()->route('dashboard');
         }
-
         // if (!in_array($request->user()->role, $roles)) {
         //     return redirect()->route('user.dashboard');
         // }

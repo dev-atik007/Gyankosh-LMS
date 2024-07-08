@@ -25,6 +25,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::attempt($credentials)) {
+            $notification = array(
+                'message'   => 'The provided credentials do not match our records.',
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        }
+
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -35,10 +45,15 @@ class AuthenticatedSessionController extends Controller
         } elseif ($request->user()->role === 'instructor') {
             $url = 'instructor/dashboard';
         } elseif ($request->user()->role === 'user') {
-            $url = 'user/dashboard';
+            $url = '/dashboard';
         }
 
-        return redirect()->intended($url);
+        $notification = array(
+            'message'   => 'Login has been Successfully',
+            'alert-type' => 'success',
+        );
+    
+        return redirect()->intended($url)->with($notification);
     }
 
     /**

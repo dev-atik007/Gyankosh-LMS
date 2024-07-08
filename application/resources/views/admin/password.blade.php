@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="{{ (!empty($ProfileData->image)) ? url('application/public/upload/admin_images/' . @$ProfileData->image) : url('application/public/upload/admin_image.png') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                            <img src="{{ (!empty($ProfileData->image)) ? url('application/public/application/public/upload/admin_images/' . @$ProfileData->image) : url('application/public/upload/admin_image.png') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                             <div class="mt-3">
                                 <h4>{{ $ProfileData->name }}</h4>
                                 <p class="text-secondary mb-1">{{ $ProfileData->username }}</p>
