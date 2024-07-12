@@ -1,3 +1,10 @@
+
+@php
+    $id = Auth::user()->id;
+    $ProfileData = App\Models\User::find($id);
+@endphp
+
+
 <header>
     <div class="topbar d-flex align-items-center">
         <nav class="navbar navbar-expand gap-3">

@@ -19,7 +19,10 @@
     <link rel="stylesheet" href="{{ asset('application/public/backend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('application/public/backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('application/public/backend/assets/css/header-colors.css') }}" />
+    @stack('style-lib')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+    <link href="{{ asset('application/public/backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+    @stack('style')
 
     <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
 </head>
@@ -28,10 +31,10 @@
     @yield('content')
 
     <script src="{{ asset('application/public/backend/assets/js/bootstrap.bundle.min.js') }}"></script>
-    <!--plugins-->
     <script src="{{ asset('application/public/backend/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('application/public/backend/assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('application/public/backend/assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
+    @stack('script-lib')
     <script src="{{ asset('application/public/backend/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('application/public/backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
     <script src="{{ asset('application/public/backend/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
@@ -39,9 +42,21 @@
     <script src="{{ asset('application/public/backend/assets/js/index.js') }}"></script>
     <script src="{{ asset('application/public/backend/assets/js/app.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('application/public/backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+	<!-- <script src="{{ asset('application/public/backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    //sweetalert2
+    <script src="{{ asset('application/public/backend/assets/js/code.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    //sweetalert2 end
+    
     <script>
         new PerfectScrollbar(".app-container")
     </script>
+
+    @stack('script')
 
     <script>
         @if(Session::has('message'))
@@ -68,7 +83,7 @@
         @endif
     </script>
 
-    @stack('script')
+    
 </body>
 
 </html>

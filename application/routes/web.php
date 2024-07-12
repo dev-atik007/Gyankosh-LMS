@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,20 +27,19 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
-    Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
     Route::post('user/profile/update', [UserController::class, 'profileUpdate'])->name('user.profile.update');
+    Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
+    Route::get('user/password', [UserController::class, 'password'])->name('user.password');
+    Route::post('user/password/update', [UserController::class, 'passwordUpdate'])->name('user.password.update');
+    Route::get('user/settings', [UserController::class, 'settings'])->name('settings');
+
+
+    
+    
+
 });
 
 
-// Route::middleware(['auth', 'roles:user'])->group(function () {
-
-//     Route::controller('User/UserController')->group(function () {
-//         Route::get('user/dashboard', 'dashboard')->name('user.dashboard');
-
-
-//     });
-
-// });
 
 
 

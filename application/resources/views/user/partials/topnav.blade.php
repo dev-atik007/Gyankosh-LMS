@@ -120,6 +120,19 @@
                     </ul>
                   </div><!-- end shop-cart -->
 
+                  <div class="shop-cart notification-cart pr-3 mr-3 border-right border-right-gray">
+                    <ul>
+                      <li>
+                        <p class="shop-cart-btn">
+                          <a href="{{ route('templates') }}">
+                            <i class="la la-globe" style="color: white;"></i>
+                          </a>
+                        </p>
+
+                      </li>
+                    </ul>
+                  </div>
+
                   @php
                   $id = Auth::user()->id;
                   $userData = App\Models\User::find($id);
@@ -211,7 +224,7 @@
                                 </a>
                               </li>
                               <li>
-                                <a href="index.html">
+                                <a href="{{ route('user.logout') }}">
                                   <i class="la la-power-off mr-1"></i> Logout
                                 </a>
                               </li>

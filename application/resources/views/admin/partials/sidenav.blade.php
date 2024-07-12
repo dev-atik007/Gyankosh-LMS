@@ -20,16 +20,14 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                <div class="parent-icon"><i class='bx bx-radio-circle'></i>
                 </div>
-                <div class="menu-title">Dashboard</div>
+                <div class="menu-title">Manage Category </div>
             </a>
             <ul>
-                <li> <a href="index.html"><i class='bx bx-radio-circle'></i>Default</a>
+                <li> <a href="{{ route('admin.all.category') }}"><i class='bx bx-radio-circle'></i>All Category</a>
                 </li>
-                <li> <a href="index2.html"><i class='bx bx-radio-circle'></i>Alternate</a>
-                </li>
-                <li> <a href="index3.html"><i class='bx bx-radio-circle'></i>Graphical</a>
+                <li> <a href="{{ route('admin.all.sub.category') }}"><i class='bx bx-radio-circle'></i>All Sub-Category</a>
                 </li>
             </ul>
         </li>
