@@ -109,4 +109,36 @@ class InstructorController extends Controller
         );
         return back()->with($notification);
     }
+
+    //instructor become register
+    public function register()
+    {
+        return view('templates.instructor.register_ins');
+    }
+
+    public function registerStore(Request $request)
+    {
+        $request->validate([
+            'name'     => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+        ]);
+
+        User::insert([
+            'name'      => $request->name,
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'phone'     => $request->phone,
+            'address'   => $request->address,
+            'password'  => Hash::make($request->password),
+            'role'      => 'instructor',
+            'status'    => '0',
+        ]);
+
+        $notification = array(
+            'message'   => 'Register Successfully Completed',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('instructor.login')->with($notification);
+    }
 }

@@ -27,7 +27,6 @@ class ManageSubCategoryController extends Controller
 
     public function subCategoryStore(Request $request)
     {
-
         $subCat = new SubCategory();
         $subCat->category_id = $request->category_id;
         $subCat->subcategory = $request->subcategory;
@@ -48,7 +47,6 @@ class ManageSubCategoryController extends Controller
         $subCategory = SubCategory::where('slug', $slug)->first();
 
         $category = Category::all();
-
 
         return view('admin.sub_category.edit', compact('subCategory', 'category'));
     }

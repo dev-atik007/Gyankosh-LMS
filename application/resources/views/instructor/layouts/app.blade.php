@@ -3,13 +3,8 @@
 
 <!--wrapper-->
 <div class="wrapper">
-    <!--sidebar wrapper -->
     @include('instructor.partials.sidenav')
-    <!--end sidebar wrapper -->
-    <!--start header -->
     @include('instructor.partials.topnav')
-    <!--end header -->
-    <!--start page wrapper -->
     <div class="page-wrapper">
         <div class="page-content">
            

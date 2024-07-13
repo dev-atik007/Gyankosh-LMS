@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\Instructor\InstructorController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('login', [InstructorController::class, 'login'])->name('login');
+Route::controller('InstructorController')->group(function () {
+
+    Route::get('login', 'login')->name('login');
+    Route::get('become/register', 'register')->name('become.register');
+    Route::post('register.store', 'registerStore')->name('register.store');
+});
 
 // Instrutor group middleware
 Route::middleware(['auth', 'roles:instructor'])->group(function () {
