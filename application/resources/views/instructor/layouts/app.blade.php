@@ -9,6 +9,7 @@
         <div class="page-content">
            
         @yield('instructor')
+        
         </div>
     </div>
     @include('instructor.partials.footer')

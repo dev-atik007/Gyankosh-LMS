@@ -146,14 +146,14 @@
                         <div class="shop-cart-btn">
                           <div class="avatar-xs">
 
-                            <img class="rounded-full img-fluid" src="{{ (!empty($userData->image)) ? url('application/public/application/public/upload/user_images/' . $userData->image) : url('application/public/templates/assets/images/small-avatar-1.jpg') }}" alt="Avatar image">
+                            <img class="rounded-full img-fluid" src="{{ (!empty($userData->image)) ? url('application/public/application/public/upload/user_images/' . $userData->image) : url('application/public/application/public/upload/no_image.jpg') }}" alt="Avatar image">
                           </div>
                           <span class="dot-status bg-1"></span>
                         </div>
                         <ul class="cart-dropdown-menu after-none p-0 notification-dropdown-menu">
                           <li class="menu-heading-block d-flex align-items-center">
                             <a href="teacher-detail.html" class="avatar-sm flex-shrink-0 d-block">
-                              <img class="rounded-full img-fluid" src="{{ (!empty($userData->image)) ? url('application/public/application/public/upload/user_images/' . $userData->image) : url('application/public/templates/assets/images/small-avatar-1.jpg') }}" alt="Avatar image">
+                              <img class="rounded-full img-fluid" src="{{ (!empty($userData->image)) ? url('application/public/application/public/upload/user_images/' . $userData->image) : url('application/public/application/public/upload/no_image.jpg') }}" alt="Avatar image">
                             </a>
                             <div class="ml-2">
                               <h4><a href="teacher-detail.html" class="text-black">{{ $userData->name }}</a></h4>

@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <link rel="icon" href="{{ asset('application/public/backend/assets/images/favicon-32x32.png') }}" type="image/png" />
     <link href="{{ asset('application/public/backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('application/public/backend/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
@@ -45,6 +48,7 @@
     <script src="{{ asset('application/public/backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
 	<!-- <script src="{{ asset('application/public/backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script> -->
 
+    {{-- jQuery cdn --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     //sweetalert2
@@ -56,7 +60,9 @@
         new PerfectScrollbar(".app-container")
     </script>
 
+
     @stack('script')
+
 
     <script>
         @if(Session::has('message'))
@@ -82,8 +88,6 @@
 
         @endif
     </script>
-
-    
 </body>
 
 </html>

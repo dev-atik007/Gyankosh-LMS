@@ -358,7 +358,7 @@
             </div>
             <div class="user-box dropdown px-3">
                 <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ (!empty($instructorData->image)) ? url('application/public/application/public/upload/instructor_images/' . @$instructorData->image) : url('application/public/upload/instructor_image.png') }}" class="user-img" alt="user avatar">
+                    <img src="{{ (!empty($instructorData->image)) ? url('application/public/application/public/upload/instructor_images/' . @$instructorData->image) : url('application/public/application/public/upload/no_image.jpg') }}" class="user-img" alt="user avatar">
                     <div class="user-info">
                         <p class="user-name mb-0">{{ $instructorData->name }}</p>
                         <p class="designattion mb-0">{{ $instructorData->email }}</p>

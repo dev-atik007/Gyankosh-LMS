@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 
-
 Route::get('login', [AdminController::class, 'login'])->name('login');
 
 //admin group middleware
@@ -39,6 +38,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('update/subcategory/{slug}', 'updateSubCategory')->name('update.sub.category');
         Route::get('delete/subcategory/{slug}', 'deleteSubCategory')->name('delete.category');
         
+    });
+
+    //Instructoradmin.user.status
+    Route::controller('ManageInstructorController')->group(function () {
+        Route::get('all/instructor', 'instructor')->name('instructor');
+        Route::post('update/user/status', 'updateUserStatus')->name('update.user.status');
     });
 
 
