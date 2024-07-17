@@ -53,6 +53,9 @@ class ManageSubCategoryController extends Controller
 
     protected function createUniqueSlug($title, $model)
     {
+        // ei code block ta ensure kore je database e slug always unique thakbe, 
+        // jodi kono duplicate slug thake tahole oitar shathe number add kore ekta unique slug generate kora hoy.
+        
         $slug = Str::slug($title);
         $originalSlug = $slug;
         $counter = 1;
@@ -108,4 +111,6 @@ class ManageSubCategoryController extends Controller
         );
         return redirect()->route('admin.all.sub.category')->with($notification);
     }
+
+    
 }

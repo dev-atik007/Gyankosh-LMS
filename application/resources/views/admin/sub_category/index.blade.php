@@ -52,13 +52,3 @@
 
 
 @endsection
-
-@push('script')
-
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable();
-    });
-</script>
-
-@endpush

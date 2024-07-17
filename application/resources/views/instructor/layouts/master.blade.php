@@ -25,12 +25,17 @@
     <link rel="stylesheet" href="{{ asset('application/public/backend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('application/public/backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('application/public/backend/assets/css/header-colors.css') }}" />
+    {{-- datatable --}}
+    <link href="{{ asset('application/public/backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}"
+        rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
     <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
 </head>
 
 <body>
+
     @yield('content')
+    
     <!-- Bootstrap JS -->
     <script src="{{ asset('application/public/backend/assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
@@ -42,6 +47,22 @@
     <script src="{{ asset('application/public/backend/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('application/public/backend/assets/plugins/chartjs/js/chart.js') }}"></script>
     <script src="{{ asset('application/public/backend/assets/js/index.js') }}"></script>
+
+    {{-- datatable --}}
+    <script src="{{ asset('application/public/backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('application/public/backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+
+    //sweetalert2
+    <script src="{{ asset('application/public/backend/assets/js/code.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    //sweetalert2 end
+
     <!--app JS-->
     <script src="{{ asset('application/public/backend/assets/js/app.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

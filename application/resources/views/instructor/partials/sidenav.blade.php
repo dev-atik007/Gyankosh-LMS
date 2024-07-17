@@ -28,23 +28,22 @@
             </a>
         </li>
         @if ($status === '1')
+
+            <li class="menu-label">Course Manage</li>
+
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class='bx bx-cookie'></i>
                     </div>
-                    <div class="menu-title">Dashboard</div>
+                    <div class="menu-title">Course Manage</div>
                 </a>
                 <ul>
-                    <li> <a href="index.html"><i class='bx bx-radio-circle'></i>Default</a>
+                    <li> <a href="{{ route('instructor.course') }}"><i class='bx bx-radio-circle'></i>All Course</a>
                     </li>
-                    <li> <a href="index2.html"><i class='bx bx-radio-circle'></i>Alternate</a>
-                    </li>
-                    <li> <a href="index3.html"><i class='bx bx-radio-circle'></i>Graphical</a>
+                    <li> <a href="index2.html"><i class='bx bx-radio-circle'></i>Add Course</a>
                     </li>
                 </ul>
             </li>
-
-            <li class="menu-label">Pages</li>
         @else
 
         @endif
