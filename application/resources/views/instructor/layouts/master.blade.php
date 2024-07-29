@@ -5,6 +5,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    
     <!--favicon-->
     <link rel="icon" href="{{ asset('application/public/backend/assets/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
@@ -58,10 +62,13 @@
         });
     </script>
 
-    //sweetalert2
+    {{-- //sweetalert2 --}}
     <script src="{{ asset('application/public/backend/assets/js/code.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    //sweetalert2 end
+    {{-- //sweetalert2 end --}}
+
+    {{-- jQuery cdn --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <!--app JS-->
     <script src="{{ asset('application/public/backend/assets/js/app.js') }}"></script>

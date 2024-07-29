@@ -49,20 +49,25 @@ class ManageCourseController extends Controller
         ]);
 
         $image = $request->file('course_image');
-        $image_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        Image::make($image)->resize(370, 246)->save('application/public/upload/course/thambnail/' . $image_gen);
-        $save_url = 'application/public/upload/course/thambnail/' . $image_gen;
+        if ($image) {
+            $image_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(370, 246)->save('application/public/upload/course/thambnail/' . $image_gen);
+            $save_url = 'application/public/upload/course/thambnail/' . $image_gen;
+        }
 
         $video = $request->file('video');
-        $videoName = time() . '.' . $video->getClientOriginalExtension();
-        $video->move(public_path('application/public/upload/course/video'), $videoName);
-        $save_video = 'application/public/upload/course/video' . $videoName;
+        if ($video) {
+            $videoName = time() . '.' . $video->getClientOriginalExtension();
+            $video->move('application/public/upload/course/video', $videoName);
+            $save_video = 'application/public/upload/course/video/' . $videoName;
+        }
 
         $course_id = Course::insertGetId([
 
             'category_id'      => $request->category_id,
             'subcategory_id'   => $request->subcategory_id,
-            'instructor_id'    => Auth::user()->id,
+            'instructor_id'    => auth()->user()->id,
+
             'course_title'     => $request->course_title,
             'course_name'      => $request->course_name,
             'course_name_slug' => strtolower(str_replace(' ', '-', $request->course_name)),
@@ -82,7 +87,6 @@ class ManageCourseController extends Controller
             'status'           => 1,
             'course_image'     => $save_url,
             'created_at'       => Carbon::now(),
-
         ]);
 
         ///Course Goals And form
@@ -129,10 +133,8 @@ class ManageCourseController extends Controller
         $category_id = $course->category_id;
         $subCat = SubCategory::where('category_id', $category_id)->get();
 
-     
-   
         $goals = Course_goal::where('course_id', $course->id)->get();
-// dd($goals);
+        // dd($goals);
         return view('instructor.course.edit', compact('course', 'subCat', 'categories', 'goals'));
     }
 
@@ -147,7 +149,7 @@ class ManageCourseController extends Controller
             $course->instructor_id    = Auth::user()->id;
             $course->course_title     = $request->course_title;
             $course->course_name      = $request->course_name;
-            $course->description     = $request->description;
+            $course->description      = $request->description;
             $course->label            = $request->label;
             $course->duration         = $request->duration;
             $course->resource         = $request->resource;
@@ -187,27 +189,29 @@ class ManageCourseController extends Controller
         return redirect()->back()->with($notification);
     }
 
+
+    //Update Course Image
     public function updateCourseImage(Request $request, $course_name_slug)
     {
         $course = Course::where('course_name_slug', $course_name_slug)->first();
         $oldImage = $request->old_img;
-    
+
         if ($request->hasFile('course_image')) {
             $image = $request->file('course_image');
             $image_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(370, 246)->save('application/public/upload/course/thambnail/' . $image_gen);
             $save_url = 'application/public/upload/course/thambnail/' . $image_gen;
-    
+
             if ($oldImage && file_exists(public_path($oldImage))) {
                 unlink(public_path($oldImage));
             }
-    
+
             $course->course_image = $save_url;
         }
-    
+
         $course->updated_at = Carbon::now();
         $course->save();
-    
+
         $notification = array(
             'message' => 'Image Updated Successfully',
             'alert-type' => 'success'
@@ -215,8 +219,84 @@ class ManageCourseController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    // video and goals pblm
 
+    //Update Course Video
+    public function updateCourseVideo(Request $request, $course_name_slug)
+    {
+        $course = Course::where('course_name_slug', $course_name_slug)->first();
+        $oldVideo = $request->old_vid;
+
+        $video = $request->file('video');
+        if ($video) {
+            $videoName = time() . '.' . $video->getClientOriginalExtension();
+            $video->move('application/public/upload/course/video', $videoName);
+            $save_video = 'application/public/upload/course/video/' . $videoName;
+
+            if ($oldVideo && file_exists(public_path($oldVideo))) {
+                unlink(public_path($oldVideo));
+            }
+            $course->video = $save_video;
+        }
+
+        $course->updated_at = Carbon::now();
+        $course->save();
+
+        $notification = array(
+            'message' => 'Video Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+
+    //Update Course Goals
+    public function updateCourseGoal(Request $request, $course_name_slug)
+    {
+        // Step 1: Fetch the course
+        $course = Course::where('course_name_slug', $course_name_slug)->first();
+        
+        if (!$course) {
+            $notification = array(
+                'message' => 'Course not found',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    
+        $cid = $course->id;
+    
+        // Step 2: Validate course goals
+        if ($request->course_goals == NULL) {
+            $notification = array(
+                'message' => 'Course goals are required',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    
+        // Step 3: Delete existing course goals
+        Course_goal::where('course_id', $cid)->delete();
+    
+        // Step 4: Insert new course goals
+        $goalsCount = count($request->course_goals);
+        if ($goalsCount > 0) {
+            for ($i = 0; $i < $goalsCount; $i++) {
+                $goal = new Course_goal();
+                $goal->course_id = $cid;
+                $goal->goal_name = $request->course_goals[$i];
+                $goal->save();
+            }
+        }
+    
+        // Step 5: Return success notification
+        $notification = array(
+            'message'   => 'Course Goals Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+    
+    // Course Delete
     public function deleteCourse($course_name_slug)
     {
         $delete = Course::where('course_name_slug', $course_name_slug)->first();
@@ -237,5 +317,4 @@ class ManageCourseController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-
 }

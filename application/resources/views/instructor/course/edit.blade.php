@@ -226,16 +226,17 @@
     <div class="page-content">
         <div class="card">
             <div class="card-body">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('instructor.update.course.video', $course->course_name_slug) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="old_vid" value="{{ $course->video }}">
-
+                    {{-- @dd($course) --}}
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="input2" class="form-label">Course Intro Video</label>
                             <input type="file" name="video" class="form-control" accept="video/mp4, video/webm">
-                            <span class="image text-danger"></span>
+                            <span class="video text-danger"></span>
                         </div>
 
                         <div class="col-md-6">
@@ -254,62 +255,88 @@
                 </form>
             </div>
         </div>
-    </div>
-    {{-- Start Main Courses Video upload --}}
-    {{-- {{ dd($course->video) }} --}}
+    </div> {{-- {{ dd($course->video) }} --}}
+
+    {{-- End Main Courses Video upload --}}
+
+
+
 
     {{-- Start Main Courses add Goals upload --}}
     <div class="page-content">
         <div class="card">
             <div class="card-body">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('instructor.update.course.goal', $course->course_name_slug) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
 
-                    <p>Corse Goal</p>
+                    <input type="hidden" name="id" value="{{ $course->id }}">
 
-                    <div class="row add_item">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="goals" class="form-label"> Goals </label>
-                                <input type="text" name="course_goals[]" id="goals" class="form-control"
-                                    placeholder="Goals">
+                    <p>Corse Goal</p>
+                    @foreach ($goals as $item)
+                        <div class="row add_item">
+                            <div class="whole_extra_item_delete" id="whole_extra_item_delete">
+                                <div class="container mt-2">
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="goals" class="form-label"> Goals </label>
+                                                <input type="text" name="course_goals[]" id="goals"
+                                                    class="form-control" value="{{ $item->goal_name }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6" style="padding-top: 30px;">
+                                        
+                                            <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add
+                                                More..</a>
+
+                                            <span class="btn btn-danger btn-sm removeeventmore"><i
+                                                    class="fa fa-minus-circle"></i>
+                                                Remove</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group col-md-6" style="padding-top: 30px;">
-                            <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add
-                                More..</a>
+                    @endforeach
+                    <!-- end row -->
+                    <br>
+                    <div class="col-md-12">
+                        <div class="d-md-flex d-grid align-items-center">
+                            <button type="submit" class="btn btn-primary px-4">Save Changes</button>
                         </div>
                     </div>
-                    <!-- end row -->
                 </form>
             </div>
         </div>
     </div>
-   {{-- End Main Courses add Goals upload --}}
+    {{-- End Main Courses add Goals upload --}}
 
-   <!-- Start of add multiple class with ajax -->
-   <div style="visibility: hidden">
-    <div class="whole_extra_item_add" id="whole_extra_item_add">
-        <div class="whole_extra_item_delete" id="whole_extra_item_delete">
-            <div class="container mt-2">
-                <div class="row">
+    <!-- Start of add multiple class with ajax -->
+    <div style="visibility: hidden">
+        <div class="whole_extra_item_add" id="whole_extra_item_add">
+            <div class="whole_extra_item_delete" id="whole_extra_item_delete">
+                <div class="container mt-2">
+                    <div class="row">
 
-                    <div class="form-group col-md-6">
-                        <label for="goals">Goals</label>
-                        <input type="text" name="course_goals[]" id="goals" class="form-control"
-                            placeholder="Goals">
+                        <div class="form-group col-md-6">
+                            <label for="goals">Goals</label>
+                            <input type="text" name="course_goals[]" id="goals" class="form-control"
+                                placeholder="Goals">
+                        </div>
+                        <div class="form-group col-md-6" style="padding-top: 20px">
+                            <span class="btn btn-success btn-sm addeventmore"><i class="fa fa-plus-circle"></i> Add</span>
+                            <span class="btn btn-danger btn-sm removeeventmore"><i class="fa fa-minus-circle"></i>
+                                Remove</span>
+                        </div>
+
                     </div>
-                    <div class="form-group col-md-6" style="padding-top: 20px">
-                        <span class="btn btn-success btn-sm addeventmore"><i class="fa fa-plus-circle"></i> Add</span>
-                        <span class="btn btn-danger btn-sm removeeventmore"><i class="fa fa-minus-circle"></i>
-                            Remove</span>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @push('script')
@@ -345,7 +372,7 @@
     <!-- End of add multiple class with ajax -->
 @endpush
 
-//validation
+{{-- //validation --}}
 @push('script')
     <script type="text/javascript">
         $('#formSubmit').on('click', function(event) {

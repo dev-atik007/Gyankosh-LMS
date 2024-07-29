@@ -33,10 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::post('user/password/update', [UserController::class, 'passwordUpdate'])->name('user.password.update');
     Route::get('user/settings', [UserController::class, 'settings'])->name('settings');
 
-
-    
-    
-
 });
 
 

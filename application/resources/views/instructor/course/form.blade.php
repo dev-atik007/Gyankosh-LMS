@@ -277,7 +277,7 @@
     </script>
 @endpush
 
-//validation
+{{-- validation --}}
 @push('script')
     <script type="text/javascript">
         $('#formSubmit').on('click', function(event) {
