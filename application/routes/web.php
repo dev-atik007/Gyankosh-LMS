@@ -37,7 +37,7 @@ Route::controller('SiteController')->group(function () {
 
     Route::get('/', 'templates')->name('templates');
 
-    Route::get('/course/details/{id}/{slug}', 'courseDetails');
+    Route::get('/course/details/{id}/{slug}', 'courseDetails')->name('course.details');
 
     Route::get('category/{id}/{slug}', 'categoryCourse');
     Route::get('subcategory/{id}/{slug}', 'subcategoryCourse');
@@ -45,7 +45,6 @@ Route::controller('SiteController')->group(function () {
     Route::get('instructor/details/{id}', 'instructorDetails')->name('instructor.details');
  
   
-    
 });
 // End Route Accessable for All
 

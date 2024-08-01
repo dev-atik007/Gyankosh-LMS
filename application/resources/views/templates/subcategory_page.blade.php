@@ -297,11 +297,6 @@
                                         </div><!-- end rating-wrap -->
 
 
-
-
-
-
-
                                         <div class="d-flex justify-content-between align-items-center">
                                             @if ($course->discount_price == null)
                                                 <p class="card-price text-black font-weight-bold">

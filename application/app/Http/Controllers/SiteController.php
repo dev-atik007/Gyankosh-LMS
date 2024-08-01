@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\Course_goal;
 use App\Models\SubCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -51,7 +52,11 @@ class SiteController extends Controller
 
     public function instructorDetails($id)
     {
-        return view('templates.instructor.details');
+
+        $instructor = User::find($id);
+        $courses = Course::where('instructor_id', $id)->paginate(8);
+
+        return view('templates.instructor.details', compact('instructor', 'courses'));
     }
 
     
