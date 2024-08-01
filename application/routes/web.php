@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Http\Controllers\SiteController;
+
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +15,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-Route::get('/', [SiteController::class, 'templates'])->name('templates');
 
 
 Route::get('/dashboard', function () {
@@ -34,6 +31,24 @@ Route::middleware('auth')->group(function () {
     Route::get('user/settings', [UserController::class, 'settings'])->name('settings');
 
 });
+
+// Route Accessable for all
+Route::controller('SiteController')->group(function () {
+
+    Route::get('/', 'templates')->name('templates');
+
+    Route::get('/course/details/{id}/{slug}', 'courseDetails');
+
+    Route::get('category/{id}/{slug}', 'categoryCourse');
+    Route::get('subcategory/{id}/{slug}', 'subcategoryCourse');
+
+    Route::get('instructor/details/{id}', 'instructorDetails')->name('instructor.details');
+ 
+  
+    
+});
+// End Route Accessable for All
+
 
 
 

@@ -1,5 +1,6 @@
 @extends('templates.layouts.frontend')
 @section('master')
+
     @include('templates.sections.hero-area')
 
     @include('templates.sections.feature-area')
@@ -33,4 +34,5 @@
     @include('templates.sections.get-started')
 
     @include('templates.sections.subscriber')
+    
 @endsection
