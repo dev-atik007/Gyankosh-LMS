@@ -34,7 +34,7 @@
                                 <div class="card card-item card-preview"
                                     data-tooltip-content="#tooltip_content_1{{ $course->id }}">
                                     <div class="card-image">
-                                        <a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}" class="d-block">
+                                        <a href="{{ route('course.details', ['id' => $course->id, 'slug' => $course->course_name_slug]) }}" class="d-block">
                                             <img class="card-img-top lazy" src="{{ asset($course->course_image) }}"
                                                 data-src="{{ asset($course->course_image) }}" alt="Card image cap">
                                         </a>
@@ -96,9 +96,10 @@
                                                 </p>
                                             @endif
 
-
                                             <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
-                                                title="Add to Wishlist"><i class="la la-heart-o"></i></div>
+                                                title="Add to Wishlist"  id="{{ $course->id }}" onclick="addToWishList(this.id)"><i class="la la-heart-o"></i></div>
+
+
                                         </div>
                                     </div><!-- end card-body -->
                                 </div><!-- end card -->

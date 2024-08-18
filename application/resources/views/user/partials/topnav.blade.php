@@ -152,11 +152,11 @@
                         </div>
                         <ul class="cart-dropdown-menu after-none p-0 notification-dropdown-menu">
                           <li class="menu-heading-block d-flex align-items-center">
-                            <a href="teacher-detail.html" class="avatar-sm flex-shrink-0 d-block">
+                            <a href="{{ route('user.profile') }}" class="avatar-sm flex-shrink-0 d-block">
                               <img class="rounded-full img-fluid" src="{{ (!empty($userData->image)) ? url('application/public/application/public/upload/user_images/' . $userData->image) : url('application/public/application/public/upload/no_image.jpg') }}" alt="Avatar image">
                             </a>
                             <div class="ml-2">
-                              <h4><a href="teacher-detail.html" class="text-black">{{ $userData->name }}</a></h4>
+                              <h4><a href="{{ route('user.profile') }}" class="text-black">{{ $userData->name }}</a></h4>
                               <span class="d-block fs-14 lh-20">{{ $userData->email }}</span>
                             </div>
                           </li>
@@ -193,7 +193,7 @@
                                 <div class="section-block"></div>
                               </li>
                               <li>
-                                <a href="dashboard-settings.html">
+                                <a href="{{ route('user.password') }}">
                                   <i class="la la-gear mr-1"></i> Settings
                                 </a>
                               </li>

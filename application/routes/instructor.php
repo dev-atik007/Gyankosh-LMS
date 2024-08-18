@@ -39,7 +39,7 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
         Route::get('delete/course/{course_name_slug}', 'deleteCourse')->name('delete.course');
     });
 
-    //Course Setion and Lecture All Route
+    //Course Section and Lecture All Route
     Route::controller('ManageLectureController')->name('course.')->group(function() {
         Route::get('all-course/lecture/{course_name_slug}', 'courseLecture')->name('lecture');
         Route::post('add-course/section', 'AddcourseSection')->name('section');

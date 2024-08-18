@@ -30,7 +30,19 @@ Route::middleware('auth')->group(function () {
     Route::post('user/password/update', [UserController::class, 'passwordUpdate'])->name('user.password.update');
     Route::get('user/settings', [UserController::class, 'settings'])->name('settings');
 
-});
+
+
+    Route::controller('WishlistController')->namespace('Frontend')->group(function () {
+
+        Route::get('user/wishlist', 'allWishList')->name('user.wishlist');
+        Route::get('user/get/wishlist/course', 'getWishlist')->name('get.wishlist.course');
+        Route::get('/wishlist-remove/{id}', 'wishlistRemove')->name('wishlist.remove');
+
+    });
+    
+
+}); //End Auth Middleware
+
 
 // Route Accessable for all
 Route::controller('SiteController')->group(function () {
@@ -44,9 +56,19 @@ Route::controller('SiteController')->group(function () {
 
     Route::get('instructor/details/{id}', 'instructorDetails')->name('instructor.details');
  
-  
 });
 // End Route Accessable for All
+
+
+Route::controller('WishlistController')->namespace('Frontend')->group(function () {
+
+    Route::post('add-to-wishlist/{course_id}', 'AddToWishList')->name('add.to.wishlist');
+
+});
+
+
+
+
 
 
 

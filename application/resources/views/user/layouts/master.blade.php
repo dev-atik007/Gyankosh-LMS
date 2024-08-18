@@ -51,6 +51,11 @@
     <script src="{{ asset('application/public/templates/assets/js/jquery.MultiFile.min.js') }}"></script>
     <script src="{{ asset('application/public/templates/assets/js/main.js') }}"></script>
 
+    {{-- //sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- //sweetalert2 end --}}
+
+    @include('templates.partials.script')
 
     <script>
         @if(Session::has('message'))

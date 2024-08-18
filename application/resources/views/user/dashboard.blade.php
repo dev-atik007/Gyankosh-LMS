@@ -15,7 +15,7 @@
   <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between mb-5">
     <div class="media media-card align-items-center">
       <div class="media-img media--img media-img-md rounded-full">
-        <img class="rounded-full" src="{{ (!empty($userData->image)) ? url('application/public/application/public/upload/user_images/' . $userData->image) : url('application/public/application/public/upload/no_image.jpg') }}" alt="Student thumbnail image">
+        <img class="rounded-full" src="{{ (!empty($userData->image)) ? url('application/public/application/public/upload/user_images/' . @$userData->image) : url('application/public/application/public/upload/no_image.jpg') }}" alt="Student thumbnail image">
       </div>
       <div class="media-body">
         <h2 class="section__title fs-30">Hello, {{ $userData->name }}</h2>

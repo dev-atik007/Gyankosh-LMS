@@ -32,7 +32,9 @@
     {{-- datatable --}}
     <link href="{{ asset('application/public/backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}"
         rel="stylesheet" />
+    {{-- //sweetalert2 --}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+
     <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
 </head>
 
