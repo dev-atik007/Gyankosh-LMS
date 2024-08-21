@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
   
-    <div class="section-block mb-5"></div>
+   
     <div class="dashboard-heading mb-5">
         <h3 class="fs-22 font-weight-semi-bold">My Wishlist</h3>
     </div>

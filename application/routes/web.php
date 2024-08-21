@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
 
 }); //End Auth Middleware
 
-
+// 01715986786-hanif
 // Route Accessable for all
 Route::controller('SiteController')->group(function () {
 
@@ -55,7 +55,6 @@ Route::controller('SiteController')->group(function () {
     Route::get('subcategory/{id}/{slug}', 'subcategoryCourse');
 
     Route::get('instructor/details/{id}', 'instructorDetails')->name('instructor.details');
- 
 });
 // End Route Accessable for All
 
@@ -63,6 +62,21 @@ Route::controller('SiteController')->group(function () {
 Route::controller('WishlistController')->namespace('Frontend')->group(function () {
 
     Route::post('add-to-wishlist/{course_id}', 'AddToWishList')->name('add.to.wishlist');
+});
+
+
+Route::controller('CartController')->namespace('Frontend')->group(function () {
+
+    Route::post('/cart/data/store/{id}', 'addToCart')->name('cart.store');
+    Route::get('/cart/data/', 'cartData')->name('cart.data');
+    //Get Data from Minicart
+    Route::get('/course-mini-cart', 'addToMiniCart')->name('course.mini.cart');
+    Route::get('/mini-cart-remove/{rowId}', 'removeToMiniCart')->name('mini.cart.remove');
+
+    //Cart Details Page
+    Route::get('/cart-page', 'cartPage')->name('cart.page');
+    Route::get('get-cart-course', 'getCartCourse')->name('get.cart.course');
+    Route::get('get-cart-course-remove/{rowId}', 'getCartCourseRemove')->name('get.cart.course.remove');
 
 });
 
