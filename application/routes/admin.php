@@ -25,9 +25,9 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('category/store', 'categoryStore')->name('category.store');
         Route::get('edit/category/{id}', 'editCategory')->name('edit.category');
         Route::post('update/category', 'updateCategory')->name('update.category');
-        Route::get('delete/category/{id}', 'deleteCategory')->name('delete.category');
-        
+        Route::get('delete/category/{id}', 'deleteCategory')->name('delete.category');    
     });
+
 
     //Sub-Category
     Route::controller('ManageSubCategoryController')->group(function () {
@@ -36,14 +36,25 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('subCategory/store', 'subCategoryStore')->name('subCategory.store');
         Route::get('edit/subcategory/{slug}', 'editsubCategory')->name('edit.subcategory');
         Route::post('update/subcategory/{slug}', 'updateSubCategory')->name('update.sub.category');
-        Route::get('delete/subcategory/{slug}', 'deleteSubCategory')->name('delete.category');
-        
+        Route::get('delete/subcategory/{slug}', 'deleteSubCategory')->name('delete.category');     
     });
+
 
     //Instructoradmin.user.status
     Route::controller('ManageInstructorController')->group(function () {
         Route::get('all/instructor', 'instructor')->name('instructor');
         Route::post('update/user/status', 'updateUserStatus')->name('update.user.status');
+    });
+
+
+    //Manage Courses
+    Route::controller('ManageCourseController')->group(function () {
+
+        Route::get('all/course', 'allCourse')->name('all.course');
+        Route::post('update-course-status', 'updateCourseStatus')->name('update.course.status');
+        Route::get('course-details/{id}', 'courseDetails')->name('course.details');
+
+
     });
 
 

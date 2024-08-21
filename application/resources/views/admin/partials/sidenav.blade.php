@@ -54,7 +54,39 @@
             </ul>
         </li>
 
+
+        <li class="menu-label">Manage Courses</li>
+
+        <li>
+            <a href="{{ route('admin.all.course') }}">
+                <div class="parent-icon"><i class='bx bx-home-alt'></i>
+                </div>
+                <div class="menu-title">All Course</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-radio-circle'></i>
+                </div>
+                <div class="menu-title">Manage Courses </div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.all.category') }}"><i class='bx bx-radio-circle'></i>All Category</a>
+                </li>
+                <li> <a href="{{ route('admin.all.sub.category') }}"><i class='bx bx-radio-circle'></i>All
+                        Sub-Category</a>
+                </li>
+            </ul>
+        </li>
+
+
+
+
+
     </ul>
     <!--end navigation-->
+
+
 
 </div>
