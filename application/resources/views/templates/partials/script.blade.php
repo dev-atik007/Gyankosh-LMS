@@ -235,7 +235,7 @@
     miniCart();
 
 
-    
+
     // Mini Cart Remove Start
     function miniCartRemove(rowId) {
         let url = "{{ route('mini.cart.remove', ':rowId') }}".replace(':rowId', rowId);
@@ -281,7 +281,7 @@
 
 {{-- //Start Cart Page --}}
 <script type="text/javascript">
-    function cart(){
+    function cart() {
         $.ajax({
             type: "GET",
             url: '{{ route('get.cart.course') }}',
@@ -292,9 +292,9 @@
 
                 $('span[id="cartSubTotal"]').text(response.cartTotal);
 
-                var rows = ""; 
-                
-                $.each(response.carts, function(key,value){
+                var rows = "";
+
+                $.each(response.carts, function(key, value) {
                     rows += `                    
                            <tr>
                             <th scope="row">
@@ -324,7 +324,7 @@
                     `
                 });
 
-                $('#cartPage').html(rows); 
+                $('#cartPage').html(rows);
             }
         })
     }
@@ -343,6 +343,7 @@
 
                 miniCart();
                 cart();
+                couponCalculation();
 
                 //start message
                 const Toast = Swal.mixin({
@@ -369,8 +370,164 @@
             }
         })
     }
+    cartRemove();
     // My Cart Remove End
-
 </script>
 
 {{-- //End Cart Page --}}
+
+
+
+
+{{-- //Start Coupon --}}
+
+{{-- //coupon-apply --}}
+<script type="text/javascript">
+    function applyCoupon() {
+        
+        couponCalculation();
+
+        var coupon_name = $('#coupon_name').val();
+        $.ajax({
+            type: "POST",
+            url: '{{ route('coupon.apply') }}',
+            dataType: 'json',
+            data: {
+                coupon_name: coupon_name
+            },
+
+            success(data) {
+
+                if (data.validity == true) {
+                    $('#couponField').hide();
+                }
+
+
+                //start message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    });
+                } else {
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    });
+                }
+                // end message
+            }
+        })
+    }
+    // {{-- //Start Coupon end --}}
+    
+
+    /// Start Coupon Calculation Method
+    function couponCalculation() {
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('coupon.calculation') }}',
+            dataType: 'json',
+
+            success: function(data) {
+                if (data.total) {
+                    $('#couponCalField').html(`
+                        <h3 class="fs-18 font-weight-bold pb-3">Cart Totals</h3>
+                        <div class="divider"><span></span></div>
+                        <ul class="generic-list-item pb-4">
+                            <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                                <span class="text-black">Subtotal:</span>
+                                <span>$${data.total} </span>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                                <span class="text-black">Total:</span>
+                                <span>$${data.total}</span>
+                            </li>
+                        </ul>
+                    `)
+                } else {
+                    $('#couponCalField').html(`
+                        <h3 class="fs-18 font-weight-bold pb-3">Cart Totals</h3>
+                        <div class="divider"><span></span></div>
+                        <ul class="generic-list-item pb-4">
+                            <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                                <span class="text-black">Subtotal:</span>
+                                <span>$${data.subtotal} </span>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                                <span class="text-black">Coupon Name:</span>
+                                <span>${data.coupon_name} <button type="button" class="icon-element icon-element-xs shadow-sm border-0" data-toggle="tooltip" data-placement="top" id="20a6c8aaf71e4b9ba471b19506bb1145" onclick="couponRemove()" data-original-title="" >
+                                    <i class="la la-times"></i>
+                                </button></span>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                                <span class="text-black">Coupon Discount:</span>
+                                <span>$${data.discount_amount}</span>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                                <span class="text-black">Grand Totoal:</span>
+                                <span>$${data.total_amount}</span>
+                            </li>
+                        </ul>
+                    `)
+                }
+            }
+        })
+    }
+    
+    couponCalculation();
+
+
+</script>
+{{-- //End Coupon Calculation Method --}}
+
+
+{{-- //Remove Coupon --}}
+<script type="text/javascript">
+    function couponRemove(){
+        $.ajax({
+            type: "GEt",
+            dataType: 'json',
+            url: '{{ route('coupon.remove') }}',
+
+            success:function(data){
+
+                couponCalculation();
+                $('#couponField').show();
+
+                //start message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    });
+                } else {
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    });
+                }
+                // end message
+            }
+        })
+    }
+</script>
+{{-- //Remove Coupon End--}}

@@ -78,6 +78,12 @@ Route::controller('CartController')->namespace('Frontend')->group(function () {
     Route::get('get-cart-course', 'getCartCourse')->name('get.cart.course');
     Route::get('get-cart-course-remove/{rowId}', 'getCartCourseRemove')->name('get.cart.course.remove');
 
+    //Coupon
+    Route::post('coupon-apply', 'couponApply')->name('coupon.apply');
+    Route::get('coupon-calculation', 'couponCalculation')->name('coupon.calculation');
+    Route::get('coupon-remove', 'couponRemove')->name('coupon.remove');
+
+
 });
 
 

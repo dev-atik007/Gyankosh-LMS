@@ -53,8 +53,18 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('all/course', 'allCourse')->name('all.course');
         Route::post('update-course-status', 'updateCourseStatus')->name('update.course.status');
         Route::get('course-details/{id}', 'courseDetails')->name('course.details');
+    });
 
+    //Manage Coupon
+    Route::controller('ManageCouponController')->group(function () {
 
+        Route::get('all/coupon', 'allCoupon')->name('all.coupon');
+        Route::get('add/coupon', 'addCoupon')->name('add.coupon');
+        Route::post('store-coupon', 'storeCoupon')->name('store.coupon');
+        Route::get('edit-coupon/{id}', 'editCoupon')->name('edit.coupon');
+        Route::post('update-coupon', 'updateCoupon')->name('update.coupon');
+        Route::get('delete-coupon/{id}', 'deleteCoupon')->name('delete.coupon');
+        
     });
 
 

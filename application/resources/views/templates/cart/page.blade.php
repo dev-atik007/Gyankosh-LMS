@@ -1,8 +1,8 @@
 @extends('templates.layouts.frontend')
 @section('master')
     <!-- ================================
-        START BREADCRUMB AREA
-    ================================= -->
+                START BREADCRUMB AREA
+            ================================= -->
     <section class="breadcrumb-area section-padding img-bg-2">
         <div class="overlay"></div>
         <div class="container">
@@ -20,12 +20,12 @@
         </div><!-- end container -->
     </section><!-- end breadcrumb-area -->
     <!-- ================================
-      END BREADCRUMB AREA
-    ================================= -->
+              END BREADCRUMB AREA
+            ================================= -->
 
     <!-- ================================
-         START CONTACT AREA
-    ================================= -->
+                 START CONTACT AREA
+            ================================= -->
     <section class="cart-area section-padding">
         <div class="container">
             <div class="table-responsive">
@@ -39,50 +39,47 @@
                         </tr>
                     </thead>
                     <tbody id="cartPage">
-                     
+
 
                     </tbody>
                 </table>
                 <div class="d-flex flex-wrap align-items-center justify-content-between pt-4">
-                    <form method="post">
-                        <div class="input-group mb-2">
-                            <input class="form-control form--control pl-3" type="text" name="search"
-                                placeholder="Coupon code">
-                            <div class="input-group-append">
-                                <button class="btn theme-btn">Apply Code</button>
+                    @if (Session::has('coupon'))
+                    @else
+                      
+                        {{-- {{ json_encode(Session::get('coupon'), JSON_PRETTY_PRINT) }} --}}
+                    
+                        <form action="#">
+                            <div class="input-group mb-2" id="couponField">
+                                <input class="form-control form--control pl-3" type="text" id="coupon_name"
+                                    placeholder="Coupon code">
+                                <div class="input-group-append">
+
+                                    <a type="submit" onclick="applyCoupon()" class="btn theme-btn">Apply Code</a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                    <a href="#" class="btn theme-btn mb-2">Update Cart</a>
+                        </form>
+                    @endif
+                
                 </div>
             </div>
             <div class="col-lg-4 ml-auto">
-                <div class="bg-gray p-4 rounded-rounded mt-40px">
-                    <h3 class="fs-18 font-weight-bold pb-3">Cart Totals</h3>
-                    <div class="divider"><span></span></div>
-                    <ul class="generic-list-item pb-4">
-                        <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
-                            <span class="text-black">Subtotal:</span>
-                            <span id="cartSubTotal">$ </span>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
-                            <span class="text-black">Total:</span>
-                            <span id="cartSubTotal">$ </span>
-                        </li>
-                    </ul>
-                    <a href="checkout.html" class="btn theme-btn w-100">Checkout <i
-                            class="la la-arrow-right icon ml-1"></i></a>
+                <div class="bg-gray p-4 rounded-rounded mt-40px" id="couponCalField">
+                    
+                    
                 </div>
+                <a href="checkout.html" class="btn theme-btn w-100">Checkout <i
+                    class="la la-arrow-right icon ml-1"></i></a>
             </div>
         </div><!-- end container -->
     </section>
     <!-- ================================
-         END CONTACT AREA
-    ================================= -->
+                 END CONTACT AREA
+            ================================= -->
 
     <!--======================================
-          START COURSE AREA
-    ======================================-->
+                  START COURSE AREA
+            ======================================-->
     <section class="course-area section--padding bg-gray">
         <div class="course-wrapper">
             <div class="container">
@@ -119,8 +116,9 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="card-price text-black font-weight-bold">12.99 <span
                                         class="before-price font-weight-medium">129.99</span></p>
-                                <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
-                                    title="Add to Wishlist"><i class="la la-heart-o"></i></div>
+                                <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist">
+                                    <i class="la la-heart-o"></i>
+                                </div>
                             </div>
                         </div><!-- end card-body -->
                     </div><!-- end card -->
@@ -286,6 +284,6 @@
         </div><!-- end course-wrapper -->
     </section><!-- end courses-area -->
     <!--======================================
-          END COURSE AREA
-    ======================================-->
+                  END COURSE AREA
+            ======================================-->
 @endsection
