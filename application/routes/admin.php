@@ -67,5 +67,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         
     });
 
+    //Manage SMTP Setting
+    Route::controller('ManageEmailController')->group(function () {
+
+        Route::get('smtp-setting', 'smtpSetting')->name('smtp.setting');
+        Route::post('smtp-setting-update', 'smtpSettingUpdate')->name('smtp.setting.update');
+        
+    });
+
 
 });//end admin group middleware

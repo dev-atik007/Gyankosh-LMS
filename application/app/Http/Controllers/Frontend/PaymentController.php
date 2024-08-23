@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderConfirm;
 use App\Models\Order;
 use App\Models\Payment;
 use Carbon\Carbon;
@@ -10,6 +11,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -61,6 +63,25 @@ class PaymentController extends Controller
             $order->course_title  = $course_title;
             $order->price         = $request->price[$key];
             $order->save();
+
+            $request->session()->forget('cart');
+
+            $paymentId = $data->id;
+
+            // Start Send email to student //
+
+            $sendMail = Payment::find($paymentId);
+            $data = [
+                'invoice_no' => $sendMail->invoice_no,
+                'amount'     => $total_amount,
+                'name'       =>  $sendMail->name,
+                'email'      =>  $sendMail->email,
+            ];
+
+            Mail::to($request->email)->send(new OrderConfirm($data));
+
+            // End Send email to student //
+
 
             if ($request->cash_delivery == 'stripe') {
                 echo "Stripe";

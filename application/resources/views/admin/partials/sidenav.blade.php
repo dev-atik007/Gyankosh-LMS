@@ -62,6 +62,14 @@
             </a>
         </li>
 
+        <li>
+            <a href="{{ route('admin.smtp.setting') }}">
+                <div class="parent-icon"><i class='bx bx-home-alt'></i>
+                </div>
+                <div class="menu-title">Manage SMTP</div>
+            </a>
+        </li>
+
 
   
     </ul>

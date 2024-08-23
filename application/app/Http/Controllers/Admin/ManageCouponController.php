@@ -63,7 +63,7 @@ class ManageCouponController extends Controller
         ]);
 
         // Data update
-        $coupon = Coupon::find($id); // Ensure the coupon exists
+        $coupon = Coupon::find($id);
         $coupon->coupon_name = strtoupper($request->coupon_name);
         $coupon->coupon_discount = $request->coupon_discount;
         $coupon->coupon_validity = $request->coupon_validity;
