@@ -345,6 +345,7 @@
                 cart();
                 couponCalculation();
 
+
                 //start message
                 const Toast = Swal.mixin({
                     toast: true,
@@ -370,7 +371,7 @@
             }
         })
     }
-    cartRemove();
+    // cartRemove();
     // My Cart Remove End
 </script>
 
@@ -384,10 +385,9 @@
 {{-- //coupon-apply --}}
 <script type="text/javascript">
     function applyCoupon() {
-        
-        couponCalculation();
 
         var coupon_name = $('#coupon_name').val();
+
         $.ajax({
             type: "POST",
             url: '{{ route('coupon.apply') }}',
@@ -397,6 +397,8 @@
             },
 
             success(data) {
+
+                couponCalculation();
 
                 if (data.validity == true) {
                     $('#couponField').hide();
@@ -486,7 +488,6 @@
     
     couponCalculation();
 
-
 </script>
 {{-- //End Coupon Calculation Method --}}
 
@@ -529,5 +530,6 @@
             }
         })
     }
+
 </script>
 {{-- //Remove Coupon End--}}

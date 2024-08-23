@@ -8,6 +8,7 @@ use App\Models\Course;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
@@ -133,7 +134,7 @@ class CartController extends Controller
                 'total_amount'      => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100),
             ]);
         }
-        
+
         return response()->json(['success' => 'Course Remove From Cart']);
     }
 
@@ -184,5 +185,33 @@ class CartController extends Controller
     {
         Session::forget('coupon');
         return response()->json(['success' => 'Coupon Remove Successfully']);
+    }
+
+    public function checkout()
+    {
+        if (Auth::check()) {
+
+            if (Cart::total() > 0) {
+                $carts      = Cart::content();
+                $cartTotal  = Cart::total();
+                $cartQty    = Cart::count();
+
+                return view('templates.cart.checkout', compact('carts', 'cartTotal', 'cartQty'));
+            } else {
+                $notification = array(
+                    'message'   => 'Add At list One Course',
+                    'alert-type' => 'error'
+                );
+                return redirect()->route('templates')->with($notification);
+            }
+            
+        } else {
+            $notification = array(
+                'message'   => 'You Need to Login First',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('login')->with($notification);
+        }
+        
     }
 }

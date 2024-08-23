@@ -68,6 +68,12 @@
     <script src="{{ asset('application/public/templates/assets/js/jquery.lazy.min.js') }}"></script>
     <script src="{{ asset('application/public/templates/assets/js/main.js') }}"></script>
     <script src="{{ asset('application/public/templates/assets/js/plyr.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+     {{-- jQuery cdn --}}
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     {{-- //sweetalert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -79,6 +85,30 @@
     <script>
         var player = new Plyr('#player');
     </script>
+
+<script>
+    @if (Session::has('message'))
+
+        var type = "{{ Session::get('alert-type', 'info') }}"
+        switch (type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+    @endif
+</script>
 </body>
 
 </html>

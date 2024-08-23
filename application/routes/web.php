@@ -83,10 +83,14 @@ Route::controller('CartController')->namespace('Frontend')->group(function () {
     Route::get('coupon-calculation', 'couponCalculation')->name('coupon.calculation');
     Route::get('coupon-remove', 'couponRemove')->name('coupon.remove');
 
-
+    //Checkout Page
+    Route::get('cart-checkout', 'checkout')->name('checkout');
+    
 });
 
-
+Route::controller('PaymentController')->namespace('Frontend')->group(function () {
+    Route::post('payment', 'payment')->name('payment');
+});
 
 
 
