@@ -28,7 +28,6 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('delete/category/{id}', 'deleteCategory')->name('delete.category');    
     });
 
-
     //Sub-Category
     Route::controller('ManageSubCategoryController')->group(function () {
         Route::get('all/sub-category', 'subCategory')->name('all.sub.category');
@@ -39,17 +38,14 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('delete/subcategory/{slug}', 'deleteSubCategory')->name('delete.category');     
     });
 
-
     //Instructoradmin.user.status
     Route::controller('ManageInstructorController')->group(function () {
         Route::get('all/instructor', 'instructor')->name('instructor');
         Route::post('update/user/status', 'updateUserStatus')->name('update.user.status');
     });
 
-
     //Manage Courses
     Route::controller('ManageCourseController')->group(function () {
-
         Route::get('all/course', 'allCourse')->name('all.course');
         Route::post('update-course-status', 'updateCourseStatus')->name('update.course.status');
         Route::get('course-details/{id}', 'courseDetails')->name('course.details');
@@ -57,23 +53,30 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     //Manage Coupon
     Route::controller('ManageCouponController')->group(function () {
-
         Route::get('all/coupon', 'allCoupon')->name('all.coupon');
         Route::get('add/coupon', 'addCoupon')->name('add.coupon');
         Route::post('store-coupon', 'storeCoupon')->name('store.coupon');
         Route::get('edit-coupon/{id}', 'editCoupon')->name('edit.coupon');
         Route::post('update-coupon', 'updateCoupon')->name('update.coupon');
         Route::get('delete-coupon/{id}', 'deleteCoupon')->name('delete.coupon');
-        
     });
 
     //Manage SMTP Setting
     Route::controller('ManageEmailController')->group(function () {
-
         Route::get('smtp-setting', 'smtpSetting')->name('smtp.setting');
         Route::post('smtp-setting-update', 'smtpSettingUpdate')->name('smtp.setting.update');
-        
     });
 
+    //Manage Order
+    Route::controller('ManageOrderController')->group(function () {
+        Route::get('pending-order', 'pendingOrder')->name('pending.order');
+        Route::get('order-details/{id}', 'orderDetails')->name('order.details');
+        Route::get('pending-confirm/{id}', 'pendingToConfirm')->name('pending.confirm');
+        Route::get('confirm-order', 'confirmOrder')->name('confirm.order');
+    });
+
+
+
+    
 
 });//end admin group middleware

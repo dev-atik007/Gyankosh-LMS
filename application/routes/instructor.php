@@ -53,5 +53,11 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
 
     });
 
+    //Manage All Orders
+    Route::controller('OrderController')->group(function() {
+        Route::get('all-orders', 'allOrder')->name('all.order');
+        Route::get('order-details/{payment_id}', 'orderDetails')->name('order.details');
+    });
+
 
 }); //end instrutor group middleware

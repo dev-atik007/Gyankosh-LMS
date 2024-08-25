@@ -85,6 +85,11 @@ Route::controller('CartController')->namespace('Frontend')->group(function () {
 
     //Checkout Page
     Route::get('cart-checkout', 'checkout')->name('checkout');
+
+    // Buy now button
+    Route::post('buy-data-store/{id}', 'buyDataStore')->name('buy.data.store');
+
+
     
 });
 
