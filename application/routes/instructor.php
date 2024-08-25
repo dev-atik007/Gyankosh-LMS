@@ -57,6 +57,7 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
     Route::controller('OrderController')->group(function() {
         Route::get('all-orders', 'allOrder')->name('all.order');
         Route::get('order-details/{payment_id}', 'orderDetails')->name('order.details');
+        Route::get('order-invoice/{payment_id}', 'orderInvoice')->name('order.invoice');
     });
 
 

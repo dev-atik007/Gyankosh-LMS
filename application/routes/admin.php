@@ -35,7 +35,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('subCategory/store', 'subCategoryStore')->name('subCategory.store');
         Route::get('edit/subcategory/{slug}', 'editsubCategory')->name('edit.subcategory');
         Route::post('update/subcategory/{slug}', 'updateSubCategory')->name('update.sub.category');
-        Route::get('delete/subcategory/{slug}', 'deleteSubCategory')->name('delete.category');     
+        Route::get('delete/subcategory/{slug}', 'deleteSubCategory')->name('delete.sub.category');     
     });
 
     //Instructoradmin.user.status

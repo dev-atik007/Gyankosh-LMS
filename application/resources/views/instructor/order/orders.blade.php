@@ -52,12 +52,12 @@
                                     <td>
                                         {{-- <a href="" class="btn btn-info btn-sm" title="Edit"><i
                                                 class="lni lni-eraser"></i></a> --}}
-                                        <a href="{{ route('instructor.order.details', $data->payment->id) }}" class="btn btn-info btn-sm" title="Lecture"><i
+                                        <a href="{{ route('instructor.order.details', $data->payment->id) }}" class="btn btn-info btn-sm" title="details"><i
                                                 class="lni lni-eye"></i></a>
 
                                         {{-- <a href="" class="btn btn-warning btn-sm" title="Lecture"><i
                                                 class="lni lni-list"></i></a> --}}
-                                        <a href="" class="btn btn-warning btn-sm" title="Lecture"><i
+                                        <a href="{{ route('instructor.order.invoice', $data->payment->id) }}" class="btn btn-warning btn-sm" title="pdf"><i
                                                 class="lni lni-download"></i></a>
 
                                     </td>
