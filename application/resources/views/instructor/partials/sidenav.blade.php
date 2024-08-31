@@ -36,6 +36,14 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{{ route('instructor.student.question') }}">
+                    <div class="parent-icon"><i class='bx bx-home-alt'></i>
+                    </div>
+                    <div class="menu-title">Student Question</div>
+                </a>
+            </li>
+
             <li class="menu-label">Course Manage</li>
 
             <li>
@@ -51,6 +59,8 @@
                     </li>
                 </ul>
             </li>
+
+            
         @else
         @endif
 

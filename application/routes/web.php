@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/dashboard', function () {
     return view('user.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -31,25 +30,34 @@ Route::middleware('auth')->group(function () {
     Route::get('user/settings', [UserController::class, 'settings'])->name('settings');
 
 
-
+    // User Wishlist Route
     Route::controller('WishlistController')->namespace('Frontend')->group(function () {
-
         Route::get('user/wishlist', 'allWishList')->name('user.wishlist');
         Route::get('user/get/wishlist/course', 'getWishlist')->name('get.wishlist.course');
-        Route::get('/wishlist-remove/{id}', 'wishlistRemove')->name('wishlist.remove');
-
+        Route::get('wishlist-remove/{id}', 'wishlistRemove')->name('wishlist.remove');
     });
-    
 
+    // User My Course Route
+    Route::controller('CourseController')->namespace('User')->group(function () {
+        Route::get('my-course', 'myCourse')->name('my.course');
+        Route::get('course-view/{course_id}', 'courseView')->name('course.view');
+    });
+
+    // User Question Route 
+    Route::controller('QuestionController')->namespace('User')->group(function () {
+        Route::post('user-question', 'userQuestion')->name('user.question');
+    });
+
+    
 }); //End Auth Middleware
 
-// 01715986786-hanif
+
 // Route Accessable for all
 Route::controller('SiteController')->group(function () {
 
     Route::get('/', 'templates')->name('templates');
 
-    Route::get('/course/details/{id}/{slug}', 'courseDetails')->name('course.details');
+    Route::get('course/details/{id}/{slug}', 'courseDetails')->name('course.details');
 
     Route::get('category/{id}/{slug}', 'categoryCourse');
     Route::get('subcategory/{id}/{slug}', 'subcategoryCourse');
@@ -67,14 +75,14 @@ Route::controller('WishlistController')->namespace('Frontend')->group(function (
 
 Route::controller('CartController')->namespace('Frontend')->group(function () {
 
-    Route::post('/cart/data/store/{id}', 'addToCart')->name('cart.store');
-    Route::get('/cart/data/', 'cartData')->name('cart.data');
+    Route::post('cart/data/store/{id}', 'addToCart')->name('cart.store');
+    Route::get('cart/data/', 'cartData')->name('cart.data');
     //Get Data from Minicart
-    Route::get('/course-mini-cart', 'addToMiniCart')->name('course.mini.cart');
-    Route::get('/mini-cart-remove/{rowId}', 'removeToMiniCart')->name('mini.cart.remove');
+    Route::get('course-mini-cart', 'addToMiniCart')->name('course.mini.cart');
+    Route::get('mini-cart-remove/{rowId}', 'removeToMiniCart')->name('mini.cart.remove');
 
     //Cart Details Page
-    Route::get('/cart-page', 'cartPage')->name('cart.page');
+    Route::get('cart-page', 'cartPage')->name('cart.page');
     Route::get('get-cart-course', 'getCartCourse')->name('get.cart.course');
     Route::get('get-cart-course-remove/{rowId}', 'getCartCourseRemove')->name('get.cart.course.remove');
 
@@ -88,13 +96,13 @@ Route::controller('CartController')->namespace('Frontend')->group(function () {
 
     // Buy now button
     Route::post('buy-data-store/{id}', 'buyDataStore')->name('buy.data.store');
-
-
-    
 });
 
 Route::controller('PaymentController')->namespace('Frontend')->group(function () {
-    Route::post('payment', 'payment')->name('payment');
+    Route::post('payment/stripe', 'payment')->name('payment');
+
+    // Stripe Payment
+    Route::post('stripe/order', 'stripeOrder')->name('stripe.order');
 });
 
 
@@ -105,4 +113,4 @@ Route::controller('PaymentController')->namespace('Frontend')->group(function ()
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

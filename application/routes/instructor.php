@@ -12,18 +12,18 @@ Route::controller('InstructorController')->group(function () {
 
 // Instrutor group middleware
 Route::middleware(['auth', 'roles:instructor'])->group(function () {
-    
+
     Route::controller('InstructorController')->group(function () {
         Route::get('dashboard', 'dashboard')->name('dashboard');
         Route::get('logout', 'logout')->name('logout');
         Route::get('profile', 'profile')->name('profile');
-		Route::post('profile/update', 'profileUpdate')->name('profile.update');
+        Route::post('profile/update', 'profileUpdate')->name('profile.update');
         Route::get('password', 'password')->name('password');
         Route::post('password/update', 'passwordUpdate')->name('password.update');
     });
 
     //Manage Course
-    Route::controller('ManageCourseController')->group(function() {
+    Route::controller('ManageCourseController')->group(function () {
         Route::get('all-course', 'allCourse')->name('course');
         Route::get('add-course', 'addCourse')->name('add.course');
 
@@ -40,7 +40,7 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
     });
 
     //Course Section and Lecture All Route
-    Route::controller('ManageLectureController')->name('course.')->group(function() {
+    Route::controller('ManageLectureController')->name('course.')->group(function () {
         Route::get('all-course/lecture/{course_name_slug}', 'courseLecture')->name('lecture');
         Route::post('add-course/section', 'AddcourseSection')->name('section');
         Route::get('course/section/delete/{course_name_slug}', 'deleteSection')->name('delete.section');
@@ -50,14 +50,19 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
         Route::get('edit/lecture/{id}', 'editLecture')->name('edit.lecture');
         Route::post('update/lecture', 'updateLecture')->name('update.lecture');
         Route::get('delete/lecture/{id}', 'deleteLecture')->name('delete.lecture');
-
     });
 
     //Manage All Orders
-    Route::controller('OrderController')->group(function() {
+    Route::controller('OrderController')->group(function () {
         Route::get('all-orders', 'allOrder')->name('all.order');
         Route::get('order-details/{payment_id}', 'orderDetails')->name('order.details');
         Route::get('order-invoice/{payment_id}', 'orderInvoice')->name('order.invoice');
+    });
+    
+    //Manage Student Question 
+    Route::controller('StudentQuestionController')->group(function () {
+        Route::get('student-question', 'stQuestion')->name('student.question');
+        Route::get('chat-box', 'chatBox')->name('chat.box');
     });
 
 

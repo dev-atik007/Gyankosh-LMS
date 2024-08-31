@@ -25,15 +25,15 @@ class AppServiceProvider extends ServiceProvider
     {
         if (\Schema::hasTable('smtp_settings')) {
             $smtpsetting = SmtpSetting::first();
-    
+
             if ($smtpsetting) {
                 $data = [
                     'driver'    => $smtpsetting->mailer,
                     'host'      => $smtpsetting->host,
-                    'port'      => $smtpsetting->port, 
+                    'port'      => $smtpsetting->port,
                     'username'  => $smtpsetting->username,
                     'password'  => $smtpsetting->password,
-                    'encryption'=> $smtpsetting->encryption,
+                    'encryption' => $smtpsetting->encryption,
                     'from'      => [
                         'address' => $smtpsetting->from_address,
                         'name' => 'Gyankoshlms',
@@ -43,6 +43,4 @@ class AppServiceProvider extends ServiceProvider
             }
         }
     }
-    
-
 }

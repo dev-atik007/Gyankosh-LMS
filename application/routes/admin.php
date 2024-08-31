@@ -76,7 +76,4 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     });
 
 
-
-    
-
 });//end admin group middleware

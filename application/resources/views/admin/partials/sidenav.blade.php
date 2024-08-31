@@ -20,6 +20,7 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
+
         <li>
             <a href="{{ route('admin.all.course') }}">
                 <div class="parent-icon"><i class='bx bx-home-alt'></i>

@@ -52,7 +52,6 @@ class SiteController extends Controller
 
     public function instructorDetails($id)
     {
-
         $instructor = User::find($id);
         $courses = Course::where('instructor_id', $id)->paginate(8);
 

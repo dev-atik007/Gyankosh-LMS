@@ -17,14 +17,12 @@ class OrderController extends Controller
     {
         $id = Auth::user()->id;
 
-        // Query builder instance হিসেবে ব্যবহার হচ্ছে
         $latestOrderItem = Order::where('instructor_id', $id)
             ->select('payment_id', DB::raw('MAX(id) as max_id'))
             ->groupBy('payment_id');
 
-        // joinSub এর মাধ্যমে subquery যোগ করা
-        $orderData = Order::joinSub($latestOrderItem, 'latest_order', function ($join) {
-            $join->on('orders.id', '=', 'latest_order.max_id');
+            $orderData = Order::joinSub($latestOrderItem, 'latest_order', function ($join) {
+                $join->on('orders.id', '=', 'latest_order.max_id');
         })->orderBy('latest_order.max_id', 'DESC')->get();
 
         return view('instructor.order.orders', compact('orderData'));
