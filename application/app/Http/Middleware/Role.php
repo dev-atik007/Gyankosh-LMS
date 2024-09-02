@@ -15,12 +15,24 @@ class Role
      */
     public function handle(Request $request, Closure $next, $role): Response
     {
-        if ($request->user()->role !== $role) {
-            return redirect()->route('dashboard');
-        }
-        // if (!in_array($request->user()->role, $roles)) {
-        //     return redirect()->route('user.dashboard');
+        // if ($request->user()->role !== $role) {
+        //     return redirect()->route('dashboard');
         // }
+
+        $userRole = $request->user()->role;
+
+        if ($userRole === 'user' && $role !== 'user') {
+            return redirect()->route('dashboard');
+        } elseif ($userRole === 'admin' && $role === 'user') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($userRole === 'instructor' && $role === 'user') {
+            return redirect()->route('instructor.dashboard');
+        } elseif ($userRole === 'admin' && $role === 'instructor') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($userRole === 'instructor' && $role === 'admin') {
+            return redirect()->route('instructor.dashboard');
+        }
+
 
         return $next($request);
     }

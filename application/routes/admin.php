@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('login', [AdminController::class, 'login'])->name('login');
+Route::get('login', [AdminController::class, 'login'])->middleware(RedirectIfAuthenticated::class)->name('login');
 
 //admin group middleware
 Route::middleware(['auth', 'roles:admin'])->group(function () {
@@ -73,6 +74,14 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('order-details/{id}', 'orderDetails')->name('order.details');
         Route::get('pending-confirm/{id}', 'pendingToConfirm')->name('pending.confirm');
         Route::get('confirm-order', 'confirmOrder')->name('confirm.order');
+    });
+
+    //Manage Report
+    Route::controller('ManageReportController')->group(function () {
+        Route::get('report-view', 'reportView')->name('report.view');
+        Route::post('search-by-date', 'searchDate')->name('search.by.date');
+        Route::post('search-by-month', 'searchMonth')->name('search.by.month');
+        Route::post('search-by-year', 'searchYear')->name('search.by.year');
     });
 
 

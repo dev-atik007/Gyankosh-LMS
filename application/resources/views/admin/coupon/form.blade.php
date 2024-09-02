@@ -64,35 +64,3 @@
 
 @endsection
 
-
-//validation
-@push('script')
-<script type="text/javascript">
-
-    $('#formSubmit').on('click', function(event) {
-    var catName = $('#catName').val();
-    var image = $('#image').val();
-    var isValid = true;
-
-    if (catName == '') {
-
-        $('.category').text('Please fill up the category name');
-        isValid = false;
-    } else {
-        $('.category').text('');
-    }
-
-    if (image == '') {
-        $('.image').text('Please upload an image');
-        isValid = false;
-    } else {
-        $('.image').text('');
-    }
-
-    if (!isValid) {
-        event.preventDefault(); 
-    }
-});
-
-</script>
-@endpush

@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 
 
 Route::controller('InstructorController')->group(function () {
 
-    Route::get('login', 'login')->name('login');
+    Route::get('login', 'login')->middleware(RedirectIfAuthenticated::class)->name('login');
     Route::get('become/register', 'register')->name('become.register');
     Route::post('register.store', 'registerStore')->name('register.store');
 });

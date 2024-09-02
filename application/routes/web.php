@@ -1,7 +1,5 @@
 <?php
 
-
-
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('user.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'roles:user'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 

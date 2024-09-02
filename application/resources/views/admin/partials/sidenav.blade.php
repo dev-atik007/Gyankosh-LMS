@@ -50,6 +50,14 @@
             </a>
         </li>
 
+        <li>
+            <a href="{{ route('admin.report.view') }}">
+                <div class="parent-icon"><i class='bx bx-home-alt'></i>
+                </div>
+                <div class="menu-title">Manage Report</div>
+            </a>
+        </li>
+
 
         <li class="menu-label">UI Elements</li>
 
