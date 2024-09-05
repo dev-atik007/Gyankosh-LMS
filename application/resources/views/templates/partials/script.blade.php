@@ -219,7 +219,7 @@
                         title: data.success,
                     });
 
-                    var url = '{{ route("checkout") }}';
+                    var url = '{{ route('checkout') }}';
                     window.location.href = url;
 
                 } else {
@@ -482,7 +482,9 @@
         })
     }
     // {{-- //Start Coupon end --}}
-    
+
+
+
 
     /// Start Coupon Calculation Method
     function couponCalculation() {
@@ -536,22 +538,75 @@
             }
         })
     }
-    
-    couponCalculation();
 
+    couponCalculation();
 </script>
 {{-- //End Coupon Calculation Method --}}
 
 
+<script type="text/javascript">
+    // {{-- //Apply Instructor Coupon Start --}}
+    function applyInsCoupon() {
+
+        var coupon_name = $('#coupon_name').val();
+        var course_id = $('#course_id').val();
+        var instructor_id = $('#instructor_id').val();
+
+        $.ajax({
+            type: "POST",
+            url: '{{ route('instructor.coupon.apply') }}',
+            dataType: 'json',
+            data: {
+                coupon_name: coupon_name, course_id:course_id, instructor_id:instructor_id,
+            },
+
+            success(data) {
+
+                couponCalculation();
+
+                if (data.validity == true) {
+                    $('#couponField').hide();
+                }
+
+
+                //start message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    });
+                } else {
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    });
+                }
+                // end message
+            }
+        })
+    }
+    // {{-- //Apply Instructor Coupon end --}}
+</script>
+
+
 {{-- //Remove Coupon --}}
 <script type="text/javascript">
-    function couponRemove(){
+    function couponRemove() {
         $.ajax({
             type: "GEt",
             dataType: 'json',
             url: '{{ route('coupon.remove') }}',
 
-            success:function(data){
+            success: function(data) {
 
                 couponCalculation();
                 $('#couponField').show();
@@ -581,10 +636,5 @@
             }
         })
     }
-
 </script>
-{{-- //Remove Coupon End--}}
-
-
-
-
+{{-- //Remove Coupon End --}}

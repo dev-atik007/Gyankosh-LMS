@@ -66,5 +66,15 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
         Route::get('chat-box', 'chatBox')->name('chat.box');
     });
 
+    //Manage Coupon  
+    Route::controller('CouponController')->group(function () {
+        Route::get('all-coupon', 'allCoupon')->name('all.coupon');
+        Route::get('add-coupon', 'addCoupon')->name('add.coupon');
+        Route::post('store-coupon', 'storeCoupon')->name('store.coupon');
+        Route::get('edit-coupon/{id}', 'editCoupon')->name('edit.coupon');
+        Route::post('update-coupon', 'updateCoupon')->name('update.coupon');
+        Route::get('delete-coupon/{id}', 'deleteCoupon')->name('delete.coupon');
+    });
+
 
 }); //end instrutor group middleware
