@@ -84,5 +84,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('search-by-year', 'searchYear')->name('search.by.year');
     });
 
+    //Manage Review
+    Route::controller('ManageReviewController')->group(function () {
+        Route::get('pending-review', 'pendingReview')->name('pending.review');
+        Route::post('update-review-status', 'pendingUpdate')->name('update.review.status');
+        Route::get('active-review', 'activeReview')->name('active.review');
+
+    });
+
 
 });//end admin group middleware

@@ -34,7 +34,8 @@
                                 <div class="card card-item card-preview"
                                     data-tooltip-content="#tooltip_content_1{{ $course->id }}">
                                     <div class="card-image">
-                                        <a href="{{ route('course.details', ['id' => $course->id, 'slug' => $course->course_name_slug]) }}" class="d-block">
+                                        <a href="{{ route('course.details', ['id' => $course->id, 'slug' => $course->course_name_slug]) }}"
+                                            class="d-block">
                                             <img class="card-img-top lazy" src="{{ asset($course->course_image) }}"
                                                 data-src="{{ asset($course->course_image) }}" alt="Card image cap">
                                         </a>
@@ -68,21 +69,38 @@
                                         </div>
                                     </div><!-- end card-image -->
                                     <div class="card-body">
+
+                                        @php
+                                            $reviewcount = App\Models\Review::where('course_id', $course->id)
+                                                ->where('status', 1)
+                                                ->latest()
+                                                ->get();
+                                            $avarage = App\Models\Review::where('course_id', $course->id)
+                                                ->where('status', 1)
+                                                ->avg('rating');
+                                        @endphp
+
                                         <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6>
                                         <h5 class="card-title"><a
-                                             href="{{ route('course.details', ['id' => $course->id, 'slug' => $course->course_name_slug]) }}">{{ $course->course_name }}</h5>
-                                        <p class="card-text"><a href="{{ route('instructor.details', $course->instructor_id) }}">{{ $course->user->name }}</a>
+                                                href="{{ route('course.details', ['id' => $course->id, 'slug' => $course->course_name_slug]) }}">{{ $course->course_name }}
+                                        </h5>
+                                        <p class="card-text"><a
+                                                href="{{ route('instructor.details', $course->instructor_id) }}">{{ $course->user->name }}</a>
                                         </p>
                                         <div class="rating-wrap d-flex align-items-center py-2">
                                             <div class="review-stars">
-                                                <span class="rating-number">4.4</span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
+                                                <span class="rating-number">{{ round($avarage, 1) }}</span>
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= $avarage)
+                                                        <span class="la la-star"></span>
+                                                    @elseif($i > $avarage && $i - $avarage < 1)
+                                                        <span class="la la-star-half-alt"></span>
+                                                    @else
+                                                        <span class="la la-star-o"></span>
+                                                    @endif
+                                                @endfor
                                             </div>
-                                            <span class="rating-total pl-1">(20,230)</span>
+                                            <span class="rating-total pl-1">({{ count($reviewcount) }})</span>
                                         </div><!-- end rating-wrap -->
                                         <div class="d-flex justify-content-between align-items-center">
 
@@ -97,7 +115,8 @@
                                             @endif
 
                                             <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
-                                                title="Add to Wishlist"  id="{{ $course->id }}" onclick="addToWishList(this.id)"><i class="la la-heart-o"></i></div>
+                                                title="Add to Wishlist" id="{{ $course->id }}"
+                                                onclick="addToWishList(this.id)"><i class="la la-heart-o"></i></div>
 
 
                                         </div>
@@ -127,7 +146,8 @@
                                 <div class="col-lg-4 responsive-column-half">
                                     <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_2">
                                         <div class="card-image">
-                                            <a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}" class="d-block">
+                                            <a href="{{ url('course/details/' . $course->id . '/' . $course->course_name_slug) }}"
+                                                class="d-block">
                                                 <img class="card-img-top lazy" src="{{ asset($course->course_image) }}"
                                                     data-src="{{ asset($course->course_image) }}" alt="Card image cap">
                                             </a>
@@ -135,12 +155,14 @@
                                         <div class="card-body">
                                             <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6>
                                             <h5 class="card-title"><a
-                                                    href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5>
+                                                    href="{{ url('course/details/' . $course->id . '/' . $course->course_name_slug) }}">{{ $course->course_name }}</a>
+                                            </h5>
                                             <p class="card-text"><a
-                                                    href="{{ route('instructor.details', $course->instructor_id) }}">{{ $course->user->name }}</a></p>
+                                                    href="{{ route('instructor.details', $course->instructor_id) }}">{{ $course->user->name }}</a>
+                                            </p>
                                             <div class="rating-wrap d-flex align-items-center py-2">
                                                 <div class="review-stars">
-                                                    <span class="rating-number">4.4</span>  
+                                                    <span class="rating-number">4.4</span>
                                                     <span class="la la-star"></span>
                                                     <span class="la la-star"></span>
                                                     <span class="la la-star"></span>
@@ -231,10 +253,11 @@
 
                     <div class="d-flex justify-content-between align-items-center">
 
-                 
 
-                        <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="addToCart({{ $data->id }}, '{{ $data->course_name }}', '{{ $data->instructor_id }}', '{{ $data->course_name_slug }}')"><i
-                            class="la la-shopping-cart mr-1 fs-18"></i>Add to Cart</button>
+
+                        <button type="submit" class="btn theme-btn flex-grow-1 mr-3"
+                            onclick="addToCart({{ $data->id }}, '{{ $data->course_name }}', '{{ $data->instructor_id }}', '{{ $data->course_name_slug }}')"><i
+                                class="la la-shopping-cart mr-1 fs-18"></i>Add to Cart</button>
 
                         <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist"><i
                                 class="la la-heart-o"></i></div>
@@ -244,6 +267,3 @@
         </div>
     </div><!-- end tooltip_templates -->
 @endforeach
-
-
-

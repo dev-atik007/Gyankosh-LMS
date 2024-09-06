@@ -64,7 +64,12 @@ Route::controller('SiteController')->group(function () {
 });
 // End Route Accessable for All
 
+//Review Controller
+Route::controller('ReviewController')->namespace('User')->group(function () {
+    Route::post('store-review', 'reviewStore')->name('store.review');
+});
 
+//Wishlist Controller
 Route::controller('WishlistController')->namespace('Frontend')->group(function () {
 
     Route::post('add-to-wishlist/{course_id}', 'AddToWishList')->name('add.to.wishlist');

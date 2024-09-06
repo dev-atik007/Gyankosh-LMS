@@ -58,7 +58,6 @@
             </a>
         </li>
 
-
         <li class="menu-label">UI Elements</li>
 
         {{-- category and subcategory --}}
@@ -91,6 +90,20 @@
                 <li> <a href="{{ route('admin.pending.order') }}"><i class='bx bx-radio-circle'></i>Pending Orders</a>
                 </li>
                 <li> <a href="{{ route('admin.confirm.order') }}"><i class='bx bx-radio-circle'></i>Confirm Orders</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-radio-circle'></i>
+                </div>
+                <div class="menu-title">Manage Review</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.pending.review') }}"><i class='bx bx-radio-circle'></i>Pending Review</a>
+                </li>
+                <li> <a href="{{ route('admin.active.review') }}"><i class='bx bx-radio-circle'></i>Active Review </a>
                 </li>
             </ul>
         </li>

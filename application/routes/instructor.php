@@ -76,5 +76,10 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
         Route::get('delete-coupon/{id}', 'deleteCoupon')->name('delete.coupon');
     });
 
+    //Manage Review
+    Route::controller('ReviewController')->group(function () {
+        Route::get('active-review', 'activeReview')->name('active.review');
+    });
+
 
 }); //end instrutor group middleware
