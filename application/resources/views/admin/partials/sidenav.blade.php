@@ -108,6 +108,20 @@
             </ul>
         </li>
 
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-radio-circle'></i>
+                </div>
+                <div class="menu-title">Manage All User</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.all.student') }}"><i class='bx bx-radio-circle'></i>All Student</a>
+                </li>
+                <li> <a href="{{ route('admin.all.instructor') }}"><i class='bx bx-radio-circle'></i>All Instructor </a>
+                </li>
+            </ul>
+        </li>
+
 
 
     </ul>

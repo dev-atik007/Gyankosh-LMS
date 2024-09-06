@@ -92,5 +92,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     });
 
+    //Manage All Student And Instructor
+    Route::controller('ActiveUserController')->group(function () {
+        Route::get('all-student', 'student')->name('all.student');
+
+        Route::get('all-instructor', 'instructorAll')->name('all.instructor');
+
+    });
 
 });//end admin group middleware
