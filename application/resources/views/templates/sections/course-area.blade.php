@@ -81,8 +81,8 @@
                                         @endphp
 
                                         <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6>
-                                        <h5 class="card-title"><a
-                                                href="{{ route('course.details', ['id' => $course->id, 'slug' => $course->course_name_slug]) }}">{{ $course->course_name }}
+                                        <h5 class="card-title"><a  
+                                                href="{{ route('course.details', ['id' => $course->id, 'slug' => $course->course_name_slug]) }}">{{ Str::limit($course->course_name, 45, '...') }}
                                         </h5>
                                         <p class="card-text"><a
                                                 href="{{ route('instructor.details', $course->instructor_id) }}">{{ $course->user->name }}</a>

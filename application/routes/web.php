@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
 
 // Route Accessable for all
+
 Route::controller('SiteController')->group(function () {
 
     Route::get('/', 'templates')->name('templates');
@@ -62,7 +63,15 @@ Route::controller('SiteController')->group(function () {
 
     Route::get('instructor/details/{id}', 'instructorDetails')->name('instructor.details');
 });
+
+Route::controller('BlogController')->namespace('Frontend')->group(function () {
+    Route::get('blog', 'blog')->name('blog');
+    Route::get('blog-details/{slug}', 'blogDetails')->name('blog.details');
+    Route::get('blog-category-list/{id}/{slug}', 'catList')->name('blog.category.list');
+});
+
 // End Route Accessable for All
+
 
 //Review Controller
 Route::controller('ReviewController')->namespace('User')->group(function () {

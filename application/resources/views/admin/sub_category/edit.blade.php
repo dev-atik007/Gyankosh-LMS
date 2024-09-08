@@ -53,7 +53,7 @@
 
                             <div class="col-md-12">
                                 <div class="d-md-flex d-grid align-items-center gap-3"></div>
-                                <button type="submit" class="btn btn-primary px-4" id="formSubmit">Save UbCategory</button>
+                                <button type="submit" class="btn btn-primary px-4" id="formSubmit">Save Sub-Category</button>
                             </div>
                         </form>
                     </div>

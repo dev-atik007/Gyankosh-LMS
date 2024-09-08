@@ -97,6 +97,28 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('all-student', 'student')->name('all.student');
 
         Route::get('all-instructor', 'instructorAll')->name('all.instructor');
+    });
+
+    //Manage Blog Category
+    Route::controller('ManageBlogController')->group(function () {
+        Route::get('blog-category', 'blogCategory')->name('blog.category');
+        Route::post('blog-category-store', 'blogStore')->name('blog.category.store');
+        Route::get('blog-category-edit/{id}', 'categoryEdit')->name('edit.blog.category');
+        Route::post('blog-category-update', 'categoryUpdate')->name('blog.category.update');
+        Route::get('blog-category-delete/{id}', 'categoryDelete')->name('blog.category.delete');
+
+    });
+
+    //Manage Blog Category
+    Route::controller('BlogPostController')->group(function () {
+        Route::get('blog-post', 'blogPost')->name('blog.post');
+        Route::get('add-blog-post', 'addPost')->name('add.blog.post');
+        Route::post('blog-post-store', 'postStore')->name('blog.post.store');
+        Route::get('blog-post-edit/{id}', 'editPost')->name('blog.post.edit');
+        Route::post('blog-post-update', 'postUpdate')->name('blog.post.update');
+        Route::get('blog-post-delete/{id}', 'editDelete')->name('blog.post.delete');
+
+
 
     });
 
