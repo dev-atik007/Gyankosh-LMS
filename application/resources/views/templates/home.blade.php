@@ -1,6 +1,10 @@
 @extends('templates.layouts.frontend')
 @section('master')
 
+    @section('title')
+        Gyankosh Learning
+    @endsection
+
     @include('templates.sections.hero-area')
 
     @include('templates.sections.feature-area')

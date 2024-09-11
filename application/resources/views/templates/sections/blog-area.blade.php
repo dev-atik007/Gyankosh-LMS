@@ -1,3 +1,4 @@
+
 <section class="blog-area section--padding bg-gray overflow-hidden">
     <div class="container">
         <div class="section-heading text-center">

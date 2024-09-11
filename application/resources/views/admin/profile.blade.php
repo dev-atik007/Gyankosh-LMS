@@ -25,7 +25,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="{{ (!empty($ProfileData->image)) ? url('application/public/application/public/upload/admin_images/' . @$ProfileData->image) : url('application/public/upload/admin_image.png') }}" 
+                            <img src="{{ (!empty($ProfileData->image)) ? url('application/public/application/public/upload/admin_images/' . @$ProfileData->image) : url('application/public/application/public/upload/admin_images/no_image.jpg') }}" 
                                 alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                             <div class="mt-3">
                                 <h4>{{ $ProfileData->name }}</h4>
@@ -108,7 +108,7 @@
                                     <h6 class="mb-0"></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <img id="showImage" src="{{ (!empty($ProfileData->image)) ? url('application/public/application/public/upload/admin_images/' . @$ProfileData->image) : url('application/public/upload/admin_image.png') }}" alt="admin" class="rounded-circle p-1 bg-primary" width="100">
+                                    <img id="showImage" src="{{ (!empty($ProfileData->image)) ? url('application/public/application/public/upload/admin_images/' . @$ProfileData->image) : url('application/public/application/public/upload/admin_images/no_image.jpg') }}" alt="admin" class="rounded-circle p-1 bg-primary" width="100">
                                 </div>
                             </div>
                             <div class="row">

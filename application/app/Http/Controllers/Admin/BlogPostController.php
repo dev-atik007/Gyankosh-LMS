@@ -118,7 +118,6 @@ class BlogPostController extends Controller
             'message'   => 'Blog Post Deleted Successfully',
             'alert-type' => 'success'
         );
-
         return redirect()->route('admin.blog.post')->with($notification);
     }
 }

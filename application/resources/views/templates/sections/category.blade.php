@@ -2,6 +2,7 @@
     $category = App\Models\Category::latest()->limit(6)->get();
 @endphp
 
+
 <section class="category-area pb-90px">
     <div class="container">
         <div class="row align-items-center">
@@ -33,9 +34,12 @@
                                 data-src="{{ asset($cat->image) }}" alt="Category image">
                             <div class="category-content">
                                 <div class="category-inner">
-                                    <h3 class="cat__title"><a href="{{ url('category/' . $cat->id . '/' . $cat->slug) }}">{{ $cat->category }}</a></h3>
+                                    <h3 class="cat__title"><a
+                                            href="{{ url('category/' . $cat->id . '/' . $cat->slug) }}">{{ $cat->category }}</a>
+                                    </h3>
                                     <p class="cat__meta">{{ count($course) }}courses</p>
-                                    <a href="{{ url('category/' . $cat->id . '/' . $cat->slug) }}" class="btn theme-btn theme-btn-sm theme-btn-white">Explore<i
+                                    <a href="{{ url('category/' . $cat->id . '/' . $cat->slug) }}"
+                                        class="btn theme-btn theme-btn-sm theme-btn-white">Explore<i
                                             class="la la-arrow-right icon ml-1"></i></a>
                                 </div>
                             </div><!-- end category-content -->

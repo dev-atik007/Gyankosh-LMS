@@ -1,6 +1,9 @@
 @extends('templates.layouts.frontend')
 @section('master')
 
+@section('title')
+    Register Page | Gyankosh Learning
+@endsection
 <section class="breadcrumb-area section-padding img-bg-2">
     <div class="overlay"></div>
     <div class="container">

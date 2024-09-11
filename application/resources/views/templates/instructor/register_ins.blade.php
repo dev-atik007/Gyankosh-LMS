@@ -1,5 +1,9 @@
 @extends('templates.layouts.frontend')
 @section('master')
+
+@section('title')
+    Register Page | Gyankosh Learning
+@endsection
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->

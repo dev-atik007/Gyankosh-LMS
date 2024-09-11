@@ -58,6 +58,45 @@
             </a>
         </li>
 
+        <li>
+            <a href="{{ route('admin.site.setting') }}">
+                <div class="parent-icon"><i class='bx bx-home-alt'></i>
+                </div>
+                <div class="menu-title">Site Setting</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-radio-circle'></i>
+                </div>
+                <div class="menu-title">Manage Admin</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.all.admin') }}"><i class='bx bx-radio-circle'></i>All Admin</a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-label">Role & Permission</li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-radio-circle'></i>
+                </div>
+                <div class="menu-title">Role & Permission</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.all.permission') }}"><i class='bx bx-radio-circle'></i>All Permission</a>
+                </li>
+                <li> <a href="{{ route('admin.all.roles') }}"><i class='bx bx-radio-circle'></i>All Roles</a>
+                </li>
+                <li> <a href="{{ route('admin.add.roles.permission') }}"><i class='bx bx-radio-circle'></i>Role In Permission</a>
+                </li>
+                <li> <a href="{{ route('admin.all.roles.permission') }}"><i class='bx bx-radio-circle'></i>All Role In Permission</a>
+                </li>
+            </ul>
+        </li>
+
         <li class="menu-label">UI Elements</li>
 
         {{-- category and subcategory --}}

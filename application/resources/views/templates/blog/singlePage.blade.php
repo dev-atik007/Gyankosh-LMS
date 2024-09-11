@@ -1,5 +1,9 @@
 @extends('templates.layouts.frontend')
 @section('master')
+
+@section('title')
+    {{ $blog->blogcategory->category }} | Gyankosh Learning
+@endsection
     <!-- ================================
                         START BREADCRUMB AREA
                     ================================= -->

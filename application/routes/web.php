@@ -62,6 +62,8 @@ Route::controller('SiteController')->group(function () {
     Route::get('subcategory/{id}/{slug}', 'subcategoryCourse');
 
     Route::get('instructor/details/{id}', 'instructorDetails')->name('instructor.details');
+
+    Route::post('mark-notification-as-read/{notification', 'MarkAsRead');
 });
 
 Route::controller('BlogController')->namespace('Frontend')->group(function () {

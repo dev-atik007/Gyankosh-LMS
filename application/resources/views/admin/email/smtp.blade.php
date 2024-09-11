@@ -12,11 +12,6 @@
                     </ol>
                 </nav>
             </div>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <a href="" class="btn btn-primary px-5">All Category</a>
-                </div>
-            </div>
         </div>
         <!--end breadcrumb-->
         <div class="row">
